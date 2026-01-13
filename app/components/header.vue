@@ -1,5 +1,12 @@
+<!-- app\components\Header.vue -->
 <script setup lang="ts">
+import type { Complaint } from '~/types/complaint'
+
 const user = useState<any>('user')
+
+defineProps<{
+  complaint?: Complaint | null
+}>()
 
 const logout = async () => {
   await $fetch('/api/auth/logout', { method: 'POST' })
@@ -9,20 +16,25 @@ const logout = async () => {
 </script>
 
 <template>
-  <header class="h-16 bg-white border-b px-6 flex items-center justify-between">
-    <h2 class="font-semibold text-lg">
-      Admin Panel
-    </h2>
-
+  <header class="admin-header">
     <div class="flex items-center gap-4">
-      <span class="text-sm text-gray-600">
+      <h2 class="header-title">Admin Panel</h2>
+
+      <span
+        v-if="complaint"
+        class="detail-id-tag"
+        style="margin: 0;"
+      >
+        {{ complaint.status }}
+      </span>
+    </div>
+
+    <div class="header-actions">
+      <span class="user-name">
         {{ user?.name }}
       </span>
 
-      <button
-        @click="logout"
-        class="px-3 py-1 text-sm bg-red-500 text-white rounded"
-      >
+      <button @click="logout" class="btn-logout">
         Logout
       </button>
     </div>

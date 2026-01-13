@@ -1,23 +1,4 @@
-<template>
-  <form @submit.prevent="submit" class="space-y-4">
-    <input
-      v-model="form.title"
-      placeholder="Judul"
-      class="border p-2 w-full"
-    />
-
-    <textarea
-      v-model="form.content"
-      placeholder="Isi pengaduan"
-      class="border p-2 w-full"
-    ></textarea>
-
-    <button class="bg-black text-white px-4 py-2">
-      Kirim
-    </button>
-  </form>
-</template>
-
+<!-- app\components\ComplaintForm.vue -->
 <script setup lang="ts">
 const form = reactive({
   title: '',
@@ -38,3 +19,30 @@ const submit = async () => {
   form.content = ''
 }
 </script>
+
+<template>
+  <form @submit.prevent="submit">
+    <div class="form-group">
+      <input
+        v-model="form.title"
+        type="text"
+        placeholder="Judul Pengaduan"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <textarea
+        v-model="form.content"
+        placeholder="Tuliskan detail pengaduan Anda di sini..."
+        class="form-control"
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      Kirim Pengaduan
+    </button>
+  </form>
+</template>

@@ -1,7 +1,7 @@
 <!-- app\components\ComplaintExportList.vue -->
-
 <script setup lang="ts">
 import type { Complaint } from '~/types/complaint'
+import { FileText, Download } from 'lucide-vue-next'
 
 const { data: complaints } = await useFetch<Complaint[]>('/api/complaints')
 
@@ -50,12 +50,31 @@ const exportAll = async () => {
 
 <template>
   <div>
-    <button @click="exportAll">Export Semua</button>
+    <!-- Main Export Action -->
+    <button @click="exportAll" class="btn btn-primary">
+      <Download :size="18" />
+      Download Semua Laporan
+    </button>
 
-    <ul class="space-y-2 mt-4">
-      <li v-for="c in complaints" :key="c.id">
-        <h3>{{ c.title }}</h3>
-        <button @click="exportWord(c.id)">Export Word</button>
+    <!-- Refined Export List -->
+    <ul class="export-grid-list">
+      <li v-for="c in complaints" :key="c.id" class="export-card-item">
+        <!-- Icon Box -->
+        <div class="file-icon-box">
+          <FileText :size="24" />
+        </div>
+
+        <!-- File Info -->
+        <div class="file-details">
+          <h3>{{ c.title }}</h3>
+          <span class="file-badge">DOCX</span>
+        </div>
+
+        <!-- Action Button -->
+        <button @click="exportWord(c.id)" class="btn btn-sm btn-outline">
+          <Download :size="14" />
+          Unduh
+        </button>
       </li>
     </ul>
   </div>

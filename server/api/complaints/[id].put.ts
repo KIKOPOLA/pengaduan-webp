@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
   await db.query(
-    'UPDATE complaints SET response = ? WHERE id = ?',
+    'UPDATE complaints SET status = ? WHERE id = ?',
     [body.response, id]
   )
 

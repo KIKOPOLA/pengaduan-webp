@@ -1,24 +1,32 @@
-<template>
-  <aside class="w-64 bg-white border-r min-h-screen p-6">
-    <h1 class="text-xl font-bold mb-8">
-      Pengaduan
-    </h1>
+<!-- app\components\AdminSidebar.vue -->
 
-    <nav class="space-y-3">
+<script setup lang="ts">
+import { LayoutList, FileText } from 'lucide-vue-next'
+</script>
+
+<template>
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      PENGADUAN
+    </div>
+
+    <nav class="sidebar-nav">
       <NuxtLink
         to="/admin"
-        class="block px-3 py-2 rounded hover:bg-gray-100"
-        active-class="bg-gray-200 font-semibold"
+        class="nav-link"
+        active-class="active"
       >
-        📋 Complaints
+        <LayoutList :size="18" />
+        Complaints
       </NuxtLink>
 
       <NuxtLink
         to="/admin/export"
-        class="block px-3 py-2 rounded hover:bg-gray-100"
-        active-class="bg-gray-200 font-semibold"
+        class="nav-link"
+        active-class="active"
       >
-        📤 Export
+        <FileText :size="18" />
+        Export Data
       </NuxtLink>
     </nav>
   </aside>

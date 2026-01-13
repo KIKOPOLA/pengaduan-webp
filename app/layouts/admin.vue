@@ -1,18 +1,26 @@
+<!-- app/layouts/admin.vue -->
+<script setup lang="ts">
+import AdminSidebar from '~/components/AdminSidebar.vue'
+import Header from '~/components/Header.vue'
+import type { Complaint } from '~/types/complaint'
+
+/**
+ * ambil GLOBAL STATE yang sama
+ */
+const selectedComplaint = useState<Complaint | null>('selectedComplaint')
+</script>
+
 <template>
-  <div class="flex min-h-screen bg-gray-100">
+  <div class="admin-wrapper">
     <AdminSidebar />
 
-    <div class="flex-1 flex flex-col">
-      <Header />
+    <div class="admin-body">
+      <!-- HEADER TETAP DI ATAS -->
+      <Header :complaint="selectedComplaint" />
 
-      <main class="flex-1 p-6">
+      <main class="admin-main">
         <slot />
       </main>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import AdminSidebar from '~/components/AdminSidebar.vue'
-import Header from '~/components/Header.vue'
-</script>
