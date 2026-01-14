@@ -42,6 +42,8 @@ const submit = async () => {
           Daftar
         </button>
       </form>
+
+      <NuxtLink to="/login"> sudah punya akun? </NuxtLink>
     </div>
   </div>
 </template>

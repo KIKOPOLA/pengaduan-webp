@@ -1,3 +1,5 @@
+// server\api\complaints\index.get.ts
+
 import { db } from '../../utils/db'
 import { requireAuth } from '../../utils/auth'
 

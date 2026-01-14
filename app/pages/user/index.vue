@@ -12,7 +12,7 @@ definePageMeta({
 
     <main class="container">
       <!-- FORM SECTION -->
-      <section id="form" class="card">
+      <!-- <section id="form" class="card">
         <h1>Form Pengaduan</h1>
         <p class="muted">
           Silakan isi form di bawah ini untuk mengirimkan pengaduan Anda secara langsung.
@@ -21,7 +21,7 @@ definePageMeta({
         <div style="margin-top: 24px;">
           <ComplaintForm />
         </div>
-      </section>
+      </section> -->
 
       <!-- ABOUT SECTION -->
       <section id="about" class="card">

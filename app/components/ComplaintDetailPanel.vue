@@ -9,6 +9,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'status-updated', status: Complaint['status']): void
+  (e: 'deleted', id: number): void
 }>()
 
 const exportWord = () => {
@@ -28,6 +29,28 @@ const updateStatus = async (e: Event) => {
 
   emit('status-updated', status)
 }
+
+const deleting = ref(false)
+
+const deleteComplaint = async () => {
+  if (!props.complaint) return
+
+  if (!confirm('Yakin ingin menghapus pengaduan ini?')) return
+
+  deleting.value = true
+  try {
+    await $fetch(`/api/complaints/${props.complaint.id}`, {
+      method: 'DELETE',
+    })
+
+    emit('deleted', props.complaint.id)
+  } catch (e) {
+    alert('Gagal menghapus pengaduan')
+  } finally {
+    deleting.value = false
+  }
+}
+
 </script>
 
 <template>
@@ -81,6 +104,13 @@ const updateStatus = async (e: Event) => {
       >
         <FileDown :size="16" />
         Export DOCX
+      </button>
+      <button
+        @click="deleteComplaint"
+        class="btn btn-danger"
+        :disabled="deleting"
+      >
+        🗑 Hapus
       </button>
     </div>
   </div>

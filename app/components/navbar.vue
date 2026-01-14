@@ -1,4 +1,13 @@
 <!-- app\components\Navbar.vue -->
+<script setup lang="ts">
+  const user = useState<any>('user')
+
+  const logout = async () => {
+  await $fetch('/api/auth/logout', { method: 'POST' })
+  user.value = null
+  navigateTo('/login')
+}
+</script>
 <template>
   <nav class="navbar">
     <a href="/" class="navbar-brand">
@@ -6,10 +15,12 @@
     </a>
 
     <ul class="navbar-links">
-      <li><a href="#form">Form</a></li>
-      <li><a href="#about">Tentang</a></li>
-      <li><a href="#how">Cara Kerja</a></li>
-      <li><a href="#action">Aksi</a></li>
+      <NuxtLink to="/user"> tentang </NuxtLink>
+      <NuxtLink to="/user/form"> form </NuxtLink>
     </ul>
+
+    <button @click="logout" class="btn-logout">
+        Logout
+    </button>
   </nav>
 </template>

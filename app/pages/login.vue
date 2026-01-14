@@ -35,6 +35,8 @@ const submit = async () => {
           Login
         </button>
       </form>
-    </div>
+
+      <NuxtLink to="/register" class="register-link"> Don't have an account? Register</NuxtLink>
+    </div>  
   </div>
 </template>

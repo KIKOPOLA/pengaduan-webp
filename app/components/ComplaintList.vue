@@ -1,5 +1,4 @@
-<!-- app\components\ComplaintList.vue -->
-
+<!-- app/components/ComplaintList.vue -->
 <script setup lang="ts">
 import type { Complaint } from '~/types/complaint'
 
@@ -7,7 +6,10 @@ const emit = defineEmits<{
   (e: 'select', complaint: Complaint): void
 }>()
 
-const { data: complaints } = await useFetch<Complaint[]>('/api/complaints')
+const { data: complaints } = await useFetch<Complaint[]>(
+  '/api/complaints',
+  { key: 'complaints' } // 🔥 PENTING
+)
 </script>
 
 <template>
@@ -22,9 +24,13 @@ const { data: complaints } = await useFetch<Complaint[]>('/api/complaints')
         <h3>{{ c.title }}</h3>
         <p>{{ c.content }}</p>
       </div>
-      <!-- Ikon panah kecil sebagai indikator klik -->
+
       <div style="color: #9ca3af;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
       </div>
     </li>
   </ul>
